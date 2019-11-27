@@ -11,7 +11,10 @@ gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
 gem "jbuilder", "~> 2.5"
 gem "bootsnap", ">= 1.1.0", require: false
-gem "bcrypt"
+gem "bcrypt", "~> 3.1", ">= 3.1.12"
+gem "jwt", "~> 1.5", ">= 1.5.4"
+gem "config", "~> 2.0"
+gem "dotenv-rails", "~> 2.1", ">= 2.1.1"
 
 group :development, :test do
   gem "pry-rails", "~> 0.3.6"
