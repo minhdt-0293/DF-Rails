@@ -15,6 +15,7 @@ gem "bcrypt", "~> 3.1", ">= 3.1.12"
 gem "jwt", "~> 1.5", ">= 1.5.4"
 gem "config", "~> 2.0"
 gem "dotenv-rails", "~> 2.1", ">= 2.1.1"
+gem "rack-cors", require: "rack/cors"
 
 group :development, :test do
   gem "pry-rails", "~> 0.3.6"
