@@ -14,4 +14,14 @@ class Api::SessionsController < ApplicationController
       render json: {status: :unauthorized, message: "Log in failed! Username or password invalid!"}
     end
   end
+
+  def show
+    user_id = JsonWebToken.decode params[:token]
+    if user_id.nil?
+      render json: {status: :unauthorized, message: "Log in failed!"}
+    else
+      user_info = User.get_info_user user_id.first["user_id"]
+      render json: {status: :ok, user_info: user_info}
+    end
+  end
 end

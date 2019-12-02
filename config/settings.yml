@@ -1,0 +1,2 @@
+config:
+  origins: "http://localhost:3001"
