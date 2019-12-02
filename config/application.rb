@@ -29,5 +29,13 @@ module DfRails
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.load_defaults 5.1
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins Settings.config.origins
+        resource '*', :headers => :any, :methods => [:get, :post, :put, :delete, :options]
+      end
+    end
   end
 end
