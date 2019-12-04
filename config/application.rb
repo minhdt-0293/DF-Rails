@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -14,7 +14,7 @@ require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
+# you"ve limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module DfRails
@@ -27,14 +27,14 @@ module DfRails
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    # Don't generate system test files.
+    # Don"t generate system test files.
     config.generators.system_tests = nil
     config.load_defaults 5.1
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins Settings.config.origins
-        resource '*', :headers => :any, :methods => [:get, :post, :put, :delete, :options]
+        origins "*"
+        resource "*", :headers => :any, :methods => [:get, :post, :put, :delete, :options]
       end
     end
   end
