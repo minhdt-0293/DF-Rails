@@ -7,7 +7,7 @@ class Api::SessionsController < ApplicationController
     user = User.find_by email: params[:email]
     if user&.authenticate params[:password]
       token = JsonWebToken.encode user_id: user.id
-      user_info = User.get_info_user user.id
+      user_info = user.user_info(request.base_url)
       render json: {status: :ok, user_info: user_info, jwt: token, message: "You logged in! Welcome back, #{user.username}"}
     else
       render json: {status: :unauthorized, message: "Log in failed! Username or password invalid!"}
