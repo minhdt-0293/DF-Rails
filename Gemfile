@@ -21,7 +21,7 @@ gem "kaminari", "~> 1.1.1"
 gem "carrierwave", "~> 1.2.3"
 gem "file_validators", "~> 2.3.0"
 gem "mimetype-fu", "~> 0.1.2"
-gem "mini_magick", "4.8.0"
+gem "mini_magick", "4.9.4"
 
 group :development, :test do
   gem "pry-rails", "~> 0.3.6"
