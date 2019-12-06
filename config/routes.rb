@@ -4,5 +4,9 @@ Rails.application.routes.draw do
     post "/get_user_info", to: "sessions#show"
     resources :categories
     resources :users
+
+    namespace :admin do
+      get "/dashboard", to: "base_admin#dashboard"
+    end
   end
 end
