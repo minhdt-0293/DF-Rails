@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     post "/get_user_info", to: "sessions#show"
     resources :categories
     resources :users
+    resources :products
   end
 end

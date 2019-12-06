@@ -32,3 +32,16 @@ end
     description: FFaker::Lorem.paragraphs
   )
 end
+
+5.times do |n|
+  5.times do |m|
+    Product.create!(
+      category_id: m+1,
+      name: FFaker::Lorem.sentence(3),
+      price: rand(10..99),
+      quantity: rand(1..40),
+      description: FFaker::Lorem.paragraphs,
+      image: FFaker::Image.url("75x75"),
+    )
+  end
+end
