@@ -58,7 +58,6 @@ ActiveRecord::Base.transaction do
       image: FFaker::Image.url("75x75"),
       description: "This is #{name}"
     )
-
     12.times do |name|
       random = rand(1..20)
       image = File.open("#{img_path}/foods/#{random}.jpeg")
