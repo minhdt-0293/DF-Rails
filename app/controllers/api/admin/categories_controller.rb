@@ -35,7 +35,10 @@ class Api::Admin::CategoriesController < ApplicationController
 
   def destroy
     category = Category.find_by id: params[:id]
-    category.destroy unless category.nil?
+    unless category.nil?
+      Product.get_by_category_id(params[:id]).destroy_all
+      category.destroy
+    end
     categories = Category.all.page(params[:page])
     total_pages = categories.total_pages
     categories = categories.map{|cat| cat.set_api_url(request.base_url)}
