@@ -27,7 +27,6 @@ end
 10.times do |n|
   category = Category.create!(
     name: FFaker::Food.fruit,
-    parent_id: 0,
     image: FFaker::Image.url("75x75"),
     description: FFaker::Lorem.paragraphs
   )
