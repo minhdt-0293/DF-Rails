@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2019_11_26_042425) do
     t.float "price"
     t.integer "quantity"
     t.string "image"
-    t.string "type"
+    t.string "product_type"
     t.float "avg_rating"
     t.text "description"
     t.datetime "created_at", null: false

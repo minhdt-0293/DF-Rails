@@ -39,6 +39,7 @@ end
       name: FFaker::Lorem.sentence(3),
       price: rand(10..99),
       quantity: rand(1..40),
+      product_type: 2,
       description: FFaker::Lorem.paragraphs,
       image: FFaker::Image.url("75x75"),
     )

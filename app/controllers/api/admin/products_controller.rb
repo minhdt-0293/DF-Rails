@@ -9,6 +9,30 @@ class Api::Admin::ProductsController < ApplicationController
     render json: {status: :ok, message: message, products: products, total_pages: total_pages}
   end
 
+  def create
+    product = Product.new product_params
+
+    if product.save
+      product = product.set_api_url request.base_url
+      render json: {status: :ok, product: product}
+    else
+      render json: {status: :bad_request, errors: product.errors}
+    end
+  end
+
+  def show
+    product = Product.find_by(id: params[:id]).set_api_url(request.base_url)
+    message = "Success"
+    render json: {status: :ok, message: message, product: product}
+  end
+
+  def update
+    product = Product.find params[:id]
+
+    product.update product_params
+    render json: {status: :ok, product: product.set_api_url(request.base_url)}
+  end
+
   def destroy
     product = Product.find_by id: params[:id]
     product.destroy unless product.nil?
@@ -24,7 +48,7 @@ class Api::Admin::ProductsController < ApplicationController
 
   private
 
-  def products_params
+  def product_params
     params.require(:product).permit Product::PRODUCT_ATTRIBUTES
   end
 end

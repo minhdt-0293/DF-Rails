@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     namespace :admin do
       get "/dashboard", to: "base_admin#dashboard"
       resources :categories
+      get "/all/categories", to: "categories#all_categories"
       resources :products
       resources :users
     end
