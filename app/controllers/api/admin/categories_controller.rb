@@ -49,6 +49,12 @@ class Api::Admin::CategoriesController < ApplicationController
     render json: {status: :ok, message: message, categories: categories, total_pages: total_pages}
   end
 
+  def all_categories
+    categories = Category.all.pluck :id, :name
+    message = "Success"
+    render json: {status: :ok, message: message, categories: categories}
+  end
+
   private
 
   def category_params

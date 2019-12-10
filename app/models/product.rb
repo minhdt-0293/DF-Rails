@@ -13,6 +13,7 @@ class Product < ApplicationRecord
   def product_info base_url
     {
       id: self.id,
+      name: self.name,
       category_id: self.category_id,
       price: self.price,
       quantity: self.quantity,
