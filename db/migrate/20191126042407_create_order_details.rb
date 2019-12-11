@@ -5,6 +5,7 @@ class CreateOrderDetails < ActiveRecord::Migration[5.2]
       t.references :product, foreign_key: true
       t.integer :quantity
       t.float :price
+      t.integer :status
 
       t.timestamps
     end
