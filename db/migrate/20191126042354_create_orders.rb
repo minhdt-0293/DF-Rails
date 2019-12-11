@@ -6,6 +6,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :phone
       t.float :total_money
       t.text :description
+      t.integer :status
 
       t.timestamps
     end

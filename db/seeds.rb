@@ -72,16 +72,22 @@ ActiveRecord::Base.transaction do
   end
 end
 
-5.times do |n|
-  5.times do |m|
-    Product.create!(
-      category_id: m+1,
-      name: FFaker::Lorem.sentence(3),
-      price: rand(10..99),
-      quantity: rand(1..40),
-      product_type: 2,
-      description: FFaker::Lorem.paragraphs,
-      image: FFaker::Image.url("75x75"),
-    )
-  end
+10.times do |n|
+  order = Order.create!(
+    user_id: rand(1..10),
+    address: FFaker::AddressUS.street_address,
+    phone: FFaker::PhoneNumber.phone_number,
+    total_money: rand(400000..500000),
+    description: FFaker::Lorem.paragraphs,
+    status: rand(1..3)
+  )
+end
+
+10.times do |n|
+  OrderDetail.create!(
+    product_id: rand(1..10),
+    order_id: rand(1..10),
+    price: rand(10..99),
+    quantity: rand(1..40)
+  )
 end

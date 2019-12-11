@@ -4,7 +4,7 @@ class Api::Admin::ProductsController < ApplicationController
   def index
     products = Product.all.page(params[:page])
     total_pages = products.total_pages
-    products = products.map{|product| product.by_category(request.base_url)}
+    products = products.map{|product| product.product_info(request.base_url)}
     message = "Success"
     render json: {status: :ok, message: message, products: products, total_pages: total_pages}
   end
@@ -13,7 +13,7 @@ class Api::Admin::ProductsController < ApplicationController
     product = Product.new product_params
 
     if product.save
-      product = product.set_api_url request.base_url
+      product = product.product_info request.base_url
       render json: {status: :ok, product: product}
     else
       render json: {status: :bad_request, errors: product.errors}
@@ -21,7 +21,7 @@ class Api::Admin::ProductsController < ApplicationController
   end
 
   def show
-    product = Product.find_by(id: params[:id]).set_api_url(request.base_url)
+    product = Product.find_by(id: params[:id]).product_info(request.base_url)
     message = "Success"
     render json: {status: :ok, message: message, product: product}
   end
@@ -30,7 +30,7 @@ class Api::Admin::ProductsController < ApplicationController
     product = Product.find params[:id]
 
     product.update product_params
-    render json: {status: :ok, product: product.set_api_url(request.base_url)}
+    render json: {status: :ok, product: product.product_info(request.base_url)}
   end
 
   def destroy
@@ -38,7 +38,7 @@ class Api::Admin::ProductsController < ApplicationController
     product.destroy unless product.nil?
     products = Product.all.page(params[:page])
     total_pages = products.total_pages
-    products = products.map{|product| product.by_category(request.base_url)}
+    products = products.map{|product| product.product_info(request.base_url)}
     if total_pages < params[:page].to_i
       products = Product.all.page(total_pages)
     end

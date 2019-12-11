@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get "/all/categories", to: "categories#all_categories"
       resources :products
       resources :users
+      resources :orders
     end
   end
 end

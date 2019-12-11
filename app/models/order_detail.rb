@@ -1,4 +1,5 @@
 class OrderDetail < ApplicationRecord
   has_one :product
-  has_one :order
+  belongs_to :order
+  delegate :name, to: :product, allow_nil: true
 end

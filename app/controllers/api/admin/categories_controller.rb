@@ -36,7 +36,7 @@ class Api::Admin::CategoriesController < ApplicationController
   def destroy
     category = Category.find_by id: params[:id]
     unless category.nil?
-      Product.get_by_category_id(params[:id]).destroy_all
+      Product.by_category(params[:id]).destroy_all
       category.destroy
     end
     categories = Category.all.page(params[:page])
