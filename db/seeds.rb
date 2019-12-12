@@ -51,14 +51,12 @@ ActiveRecord::Base.transaction do
     end
   end
 
-
   ["Fast Food", "Pizza", "Cream", "Chocolate"].each do |name|
     category = Category.create!(
       name: name,
       image: FFaker::Image.url("75x75"),
       description: "This is #{name}"
     )
-
     12.times do |name|
       random = rand(1..20)
       image = File.open("#{img_path}/foods/#{random}.jpeg")
@@ -72,4 +70,24 @@ ActiveRecord::Base.transaction do
       )
     end
   end
+end
+
+10.times do |n|
+  order = Order.create!(
+    user_id: rand(1..10),
+    address: FFaker::AddressUS.street_address,
+    phone: FFaker::PhoneNumber.phone_number,
+    total_money: rand(400000..500000),
+    description: FFaker::Lorem.paragraphs,
+    status: rand(1..3)
+  )
+end
+
+10.times do |n|
+  OrderDetail.create!(
+    product_id: rand(1..10),
+    order_id: rand(1..10),
+    price: rand(10..99),
+    quantity: rand(1..40)
+  )
 end
