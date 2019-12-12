@@ -9,12 +9,12 @@ class Api::CategoriesController < ApplicationController
   end
 
   def create
-    category = Category.create category_params
-    if category.errors.present?
-      errors = category.errors
-      render json: { errors: errors.messages }
-    else
+    category = Category.new category_params
+    if category.save
       render json: { status: :ok }
+    else
+      errors = category.errors
+      render json: { status: :bad_request, errors: errors.messages }
     end
   end
 
