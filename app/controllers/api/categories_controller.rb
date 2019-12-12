@@ -2,21 +2,18 @@ class Api::CategoriesController < ApplicationController
   skip_before_action :authenticate_user
 
   def index
-    categories = Category.all.page(params[:page])
-    total_pages = categories.total_pages
-    message = "Success"
-    render json: {status: :ok, message: message, categories: categories, total_pages: total_pages}
-  end
+    drink_categories = Category.by_product_type(Product.product_types[:drink]).uniq
+    food_categories = Category.by_product_type(Product.product_types[:food]).uniq
+    drink_products = Product.by_category(drink_categories.first.id)
+    food_products = Product.by_category(food_categories.first.id)
 
-  def destroy
-    category = Category.find_by id: params[:id]
-    category.destroy unless category.nil?
-    categories = Category.all.page(params[:page])
-    total_pages = categories.total_pages
-    if categories.total_pages < params[:page].to_i
-      categories = Category.all.page(categories.total_pages)
-    end
-    message = "Success"
-    render json: {status: :ok, message: message, categories: categories, total_pages: total_pages}
+    drink_products = drink_products.map {|product| product.product_info(request.base_url)}
+    food_products = food_products.map {|product| product.product_info(request.base_url)}
+    render json: {
+      drink_categories: drink_categories,
+      food_categories: food_categories,
+      drink_products: drink_products,
+      food_products: food_products,
+      status: :ok}
   end
 end

@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2019_11_26_042425) do
     t.bigint "product_id"
     t.integer "quantity"
     t.float "price"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_details_on_order_id"
@@ -61,7 +62,7 @@ ActiveRecord::Schema.define(version: 2019_11_26_042425) do
     t.float "price"
     t.integer "quantity"
     t.string "image"
-    t.string "type"
+    t.integer "product_type"
     t.float "avg_rating"
     t.text "description"
     t.datetime "created_at", null: false
