@@ -15,7 +15,7 @@ gem "jwt", "~> 1.5", ">= 1.5.4"
 gem "config", "~> 2.0"
 gem "dotenv-rails", "~> 2.1", ">= 2.1.1"
 gem "rack-cors", "~> 1.1.0", require: "rack/cors"
-gem "kaminari", "~> 1.1.1"
+gem "kaminari", "~> 1.2.1"
 
 # upload image
 gem "carrierwave", "~> 1.2.3"
