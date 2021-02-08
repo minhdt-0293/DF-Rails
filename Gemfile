@@ -18,7 +18,7 @@ gem "rack-cors", "~> 1.1.0", require: "rack/cors"
 gem "kaminari", "~> 1.1.1"
 
 # upload image
-gem "carrierwave", "~> 1.2.3"
+gem "carrierwave", "~> 1.3.2"
 gem "file_validators", "~> 2.3.0"
 gem "mimetype-fu", "~> 0.1.2"
 gem "mini_magick", "4.8.0"
